@@ -1,0 +1,15 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const GamesPage = () => (
+  <div style={{ padding: '1rem' }}>
+    <h2>Игры</h2>
+    <ul>
+      <li><Link to="/games/translate">Перевод слова</Link></li>
+      <li><Link to="/games/pinyin/">Написание пиньиня</Link></li>
+      <li><Link to="/games/pinyin-character">выбор hanzi</Link></li>
+    </ul>
+  </div>
+);
+
+export default GamesPage;
