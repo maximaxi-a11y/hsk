@@ -28,9 +28,15 @@ const TranslateGame = () => {
   };
 
   const handleSelect = (option) => {
+    console.log('👈 Выбран вариант:', option);
+    if (selected) return;
     setSelected(option);
+
     if (option.id === currentWord.id) {
+      console.log('✅ Правильный вариант!');
       setShowNext(true);
+    } else {
+      console.log('❌ Неправильный вариант');
     }
   };
 
@@ -44,12 +50,26 @@ const TranslateGame = () => {
     return {};
   };
 
-  if (!currentWord) return <p>Загружаем...</p>;
+  const getLabel = (option) => {
+    console.log('🔤 Отрисовка кнопки:', option);
+    if (showNext) {
+      return `${option.translation} (${option.character}, ${option.pinyin})`;
+    }
+    return option.translation;
+  };
 
+
+  if (!currentWord) return <p>Загружаем...</p>;
   return (
     <div>
-      <h3 style={{ fontSize: '2rem' }}>{currentWord.character}</h3>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '1rem' }}>
+      <h3 style={{ fontSize: '2rem' }}>{currentWord.character} ПИЗДА</h3>
+
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.5rem',
+        marginTop: '1rem'
+      }}>
         {options.map((option) => (
           <button
             key={option.id}
@@ -61,33 +81,42 @@ const TranslateGame = () => {
               borderRadius: '0.5rem',
               border: '1px solid #ccc',
               cursor: selected ? 'default' : 'pointer',
+              textAlign: 'left',
               ...getStyle(option)
             }}
           >
-            {option.translation}
+            {getLabel(option)}
           </button>
         ))}
       </div>
 
       {showNext && (
-        <button
-          onClick={generateNewRound}
-          style={{
-            marginTop: '1rem',
-            padding: '0.5rem 1rem',
-            fontSize: '1rem',
-            backgroundColor: '#007bff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '0.5rem',
-            cursor: 'pointer'
-          }}
-        >
-          Продолжить
-        </button>
+        <>
+          <div style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
+            <p><strong>Пиньинь:</strong> {currentWord.pinyin}</p>
+            <p><strong>Перевод:</strong> {currentWord.translation}</p>
+          </div>
+
+          <button
+            onClick={generateNewRound}
+            style={{
+              marginTop: '1rem',
+              padding: '0.5rem 1rem',
+              fontSize: '1rem',
+              backgroundColor: '#007bff',
+              color: 'white',
+              border: 'none',
+              borderRadius: '0.5rem',
+              cursor: 'pointer'
+            }}
+          >
+            Продолжить
+          </button>
+        </>
       )}
     </div>
   );
+
 };
 
 export default TranslateGame;

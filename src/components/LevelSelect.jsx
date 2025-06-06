@@ -1,6 +1,6 @@
 import React from 'react';
 
-const levels = ['HSK1', 'HSK2', 'HSK3'];
+const levels = ['HSK1', 'HSK2', 'HSK3','HSK4','HSK5','HSK6','Графемы'];
 
 const LevelSelect = ({ selectedLevel, onChange }) => {
   return (

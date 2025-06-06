@@ -49,6 +49,13 @@ const PinyinToCharacterGame = () => {
     return selectedIds.includes(option.id);
   };
 
+  const getLabel = (option) => {
+    if (isCorrect) {
+      return `${option.character} (${option.pinyin}, ${option.translation})`;
+    }
+    return option.character;
+  };
+
   return (
     <div>
       {currentWord && (
@@ -67,10 +74,11 @@ const PinyinToCharacterGame = () => {
                   borderRadius: '0.5rem',
                   border: '1px solid #ccc',
                   cursor: isDisabled(option) ? 'default' : 'pointer',
+                  textAlign: 'left',
                   ...getStyle(option)
                 }}
               >
-                {option.character}
+                {getLabel(option)}
               </button>
             ))}
           </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useWordChunk } from '../context/WordChunkContext';
 
 // разбиваем eng_pyn на слоги: буквы + цифра
@@ -31,7 +31,7 @@ const PinyinGame = () => {
     if (chunk.length > 0) generateNewWord();
   }, [chunk]);
 
-  const generateNewWord = () => {
+  const generateNewWord = useCallback(() => {
     const word = chunk[Math.floor(Math.random() * chunk.length)];
     const chunks = splitEngPinyin(word.eng_pyn || '');
 
@@ -39,8 +39,11 @@ const PinyinGame = () => {
     setSolutionChunks(chunks);
     setInputs(Array(chunks.length).fill(''));
     setIsCorrect(null);
-  };
+  }, [chunk]);
 
+  useEffect(() => {
+    if (chunk.length > 0) generateNewWord();
+  }, [chunk, generateNewWord]);
   const handleChange = (index, value) => {
     const clean = value.slice(-2); // максимум 2 символа
     const updated = [...inputs];
@@ -87,35 +90,40 @@ const PinyinGame = () => {
         <>
           <h2 style={{ fontSize: '2rem' }}>{currentWord.character}</h2>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', marginTop: '1rem' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              marginTop: '1rem',
+            }}
+          >
             {renderInputs()}
           </div>
 
           {isCorrect === null && (
-            <button
-              onClick={checkAnswer}
-              style={buttonStyle('#007bff')}
-            >
+            <button onClick={checkAnswer} style={buttonStyle('#007bff')}>
               Проверить
             </button>
           )}
 
-          {isCorrect === true && (
-            <button
-              onClick={generateNewWord}
-              style={buttonStyle('green')}
-            >
-              Следующий
+          {isCorrect === false && (
+            <button onClick={() => setIsCorrect(null)} style={buttonStyle('red')}>
+              Повторить
             </button>
           )}
 
-          {isCorrect === false && (
-            <button
-              onClick={() => setIsCorrect(null)}
-              style={buttonStyle('red')}
-            >
-              Повторить
-            </button>
+          {isCorrect === true && (
+            <>
+              <div style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
+                <p><strong>Пиньинь:</strong> {currentWord.pinyin}</p>
+                <p><strong>Перевод:</strong> {currentWord.translation}</p>
+              </div>
+
+              <button onClick={generateNewWord} style={buttonStyle('green')}>
+                Следующий
+              </button>
+            </>
           )}
         </>
       )}

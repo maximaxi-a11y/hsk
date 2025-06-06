@@ -3,7 +3,7 @@ import { useWordChunk } from '../context/WordChunkContext';
 
 const shuffle = (array) => array.sort(() => Math.random() - 0.5);
 
-const TranslateGame = () => {
+const TranslationToPinyinGame = () => {
   const { chunk } = useWordChunk();
   const [currentWord, setCurrentWord] = useState(null);
   const [options, setOptions] = useState([]);
@@ -41,7 +41,7 @@ const TranslateGame = () => {
     const isSelectedWrong = selectedIds.includes(option.id);
     const isRight = option.id === currentWord.id;
 
-    if (isRight && isCorrect) return { backgroundColor: 'green', color: 'white' };
+    if (isCorrect && isRight) return { backgroundColor: 'green', color: 'white' };
     if (isSelectedWrong) return { backgroundColor: 'red', color: 'white' };
 
     return {};
@@ -49,9 +49,9 @@ const TranslateGame = () => {
 
   const getLabel = (option) => {
     if (isCorrect) {
-      return `${option.translation} (${option.character}, ${option.pinyin})`;
+      return `${option.pinyin} (${option.character})`;
     }
-    return option.translation;
+    return option.pinyin;
   };
 
   const isDisabled = (option) => {
@@ -63,7 +63,7 @@ const TranslateGame = () => {
 
   return (
     <div>
-      <h3 style={{ fontSize: '2rem' }}>{currentWord.character}</h3>
+      <h3 style={{ fontSize: '1.8rem' }}>{currentWord.translation}</h3>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '1rem' }}>
         {options.map((option) => (
@@ -100,11 +100,11 @@ const TranslateGame = () => {
             cursor: 'pointer'
           }}
         >
-          Продолжить
+          Следующий
         </button>
       )}
     </div>
   );
 };
 
-export default TranslateGame;
+export default TranslationToPinyinGame;

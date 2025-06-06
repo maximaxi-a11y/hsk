@@ -52,6 +52,7 @@ export const WordChunkProvider = ({ children }) => {
         chunkSize,
         chunkIndex,
         chunk,
+        setChunk, // ✅ добавь это
         totalChunks,
         error,
         setLevel,
@@ -60,6 +61,7 @@ export const WordChunkProvider = ({ children }) => {
         saveSettings,
       }}
     >
+
       {children}
     </WordChunkContext.Provider>
   );
