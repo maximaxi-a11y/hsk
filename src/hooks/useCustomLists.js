@@ -1,5 +1,5 @@
-import { useState,useEffect } from "react";
-// hooks/useCustomLists.js
+import { useState, useEffect } from "react";
+
 export const useCustomLists = () => {
   const [lists, setLists] = useState({});
 
@@ -31,5 +31,25 @@ export const useCustomLists = () => {
 
   const getListByName = (name) => lists[name] || [];
 
-  return { lists, createList, deleteList, updateList, getListByName };
+  // ✅ Исправлено: теперь правильное определение функции
+  const setAllLists = (newLists) => {
+    if (typeof newLists === 'object' && !Array.isArray(newLists)) {
+      saveLists(newLists);
+    }
+  };
+
+  const addSingleList = (name, words) => {
+    const newLists = { ...lists, [name]: words };
+    saveLists(newLists);
+  };
+
+  return {
+    lists,
+    createList,
+    deleteList,
+    updateList,
+    getListByName,
+    setAllLists,
+    addSingleList // ← теперь точно экспортируется
+  };
 };
