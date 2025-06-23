@@ -9,6 +9,7 @@ const GamesPage = () => (
       <li><Link to="/games/pinyin/">Написание пиньиня</Link></li>
       <li><Link to="/games/pinyin-character">выбор hanzi</Link></li>
       <li><Link to="/games/translation-to-pinyin">Перевод → Пиньинь</Link></li>
+      <li><Link to="/games/dict">Диктант</Link></li>
     </ul>
   </div>
 );

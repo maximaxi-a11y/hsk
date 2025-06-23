@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useWordChunk } from '../context/WordChunkContext';
-
+import words from '../data/words.json'
 const shuffle = (array) => array.sort(() => Math.random() - 0.5);
 
 const TranslationToPinyinGame = () => {
@@ -18,7 +18,7 @@ const TranslationToPinyinGame = () => {
 
   const generateNewRound = () => {
     const word = chunk[Math.floor(Math.random() * chunk.length)];
-    const wrongOptions = shuffle(chunk.filter(w => w.id !== word.id)).slice(0, 3);
+    const wrongOptions = shuffle(words.filter(w => w.id !== word.id)).slice(0, 3);
     const mixed = shuffle([...wrongOptions, word]);
 
     setCurrentWord(word);

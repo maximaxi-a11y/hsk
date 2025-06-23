@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useWordChunk } from '../context/WordChunkContext';
+import words from '../data/words.json';
 
 const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
 
@@ -9,14 +10,14 @@ const PinyinToCharacterGame = () => {
   const [options, setOptions] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
   const [isCorrect, setIsCorrect] = useState(false);
-
+  const allWords =
   useEffect(() => {
     if (chunk.length > 0) generateNewRound();
   }, [chunk]);
 
   const generateNewRound = () => {
     const word = chunk[Math.floor(Math.random() * chunk.length)];
-    const wrongOptions = shuffle(chunk.filter(w => w.character !== word.character)).slice(0, 3);
+    const wrongOptions = shuffle(word.filter(w => w.character !== word.character)).slice(0, 3);
     const mixed = shuffle([...wrongOptions, word]);
 
     setCurrentWord(word);

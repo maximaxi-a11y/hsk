@@ -7,6 +7,7 @@ import PinyinGamePage from '../pages/PinyinGamePage';
 import PinyinToCharacterGame from '../components/PinyinToCharacterGame';
 import WordListBuilderPage from '../pages/WordListBuilderPage';
 import TranslationToPinyinGame from '../components/TranslationToPinyinGame';
+import DictGamePage from '../pages/DictGamePage';
 
 const AppRoutes = () => (
   <Routes>
@@ -17,6 +18,7 @@ const AppRoutes = () => (
     <Route path="/games/pinyin-character" element={<PinyinToCharacterGame />} />
     <Route path="/custom-lists" element={<WordListBuilderPage />} />
     <Route path="/games/translation-to-pinyin" element={<TranslationToPinyinGame />} />
+    <Route path="/games/dict" element={<DictGamePage />} />
   </Routes>
 );
 

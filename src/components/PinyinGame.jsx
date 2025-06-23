@@ -102,9 +102,15 @@ const PinyinGame = () => {
           </div>
 
           {isCorrect === null && (
+            <div>
             <button onClick={checkAnswer} style={buttonStyle('#007bff')}>
               Проверить
             </button>
+              <button onClick={generateNewWord} style={buttonStyle('teal','10px')}>
+              Пропустить
+          </button>
+            </div>
+
           )}
 
           {isCorrect === false && (
@@ -131,7 +137,7 @@ const PinyinGame = () => {
   );
 };
 
-const buttonStyle = (color) => ({
+const buttonStyle = (color,margin) => ({
   marginTop: '1rem',
   padding: '0.5rem 1rem',
   fontSize: '1rem',
@@ -140,6 +146,7 @@ const buttonStyle = (color) => ({
   border: 'none',
   borderRadius: '0.5rem',
   cursor: 'pointer',
+  margin:margin
 });
 
 export default PinyinGame;
