@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/hsk/static/css/main.e6c13ad2.css",
+    "main.js": "/hsk/static/js/main.b433bab5.js",
+    "index.html": "/hsk/index.html",
+    "main.e6c13ad2.css.map": "/hsk/static/css/main.e6c13ad2.css.map",
+    "main.b433bab5.js.map": "/hsk/static/js/main.b433bab5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.b433bab5.js"
+  ]
+}
