@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/hsk/static/css/main.e6c13ad2.css",
-    "main.js": "/hsk/static/js/main.ffc316ac.js",
+    "main.js": "/hsk/static/js/main.ef549d4a.js",
     "index.html": "/hsk/index.html",
     "main.e6c13ad2.css.map": "/hsk/static/css/main.e6c13ad2.css.map",
-    "main.ffc316ac.js.map": "/hsk/static/js/main.ffc316ac.js.map"
+    "main.ef549d4a.js.map": "/hsk/static/js/main.ef549d4a.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.ffc316ac.js"
+    "static/js/main.ef549d4a.js"
   ]
 }
